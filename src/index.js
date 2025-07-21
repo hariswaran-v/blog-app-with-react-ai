@@ -1,17 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import index from "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+import App from "./App";
+import Home from "./pages/Home";
+import BlogList from "./pages/BlogList";
+import BlogDetails from "./pages/BlogDetails";
+import CreatePost from "./pages/CreatePost";
+import EditPost from "./pages/EditPost";
+import NotFound from "./pages/NotFound";
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+import Layout from "./components/Layout";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "blogs", element: <BlogList /> },
+      { path: "blogs/:id", element: <BlogDetails /> },
+      { path: "create", element: <CreatePost /> },
+      { path: "edit/:id", element: <EditPost /> },
+      { path: "*", element: <NotFound /> },
+    ],
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<RouterProvider router={router} />);
