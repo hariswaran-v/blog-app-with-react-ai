@@ -6,7 +6,7 @@ const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen bg-zinc-50">
       <Navbar />
-      <main className="flex-grow container mx-auto px-4 py-6 bg-white border border-zinc-200 rounded-lg shadow">
+      <main className=" px-4 py-6 bg-white border border-zinc-200 rounded-lg shadow">
         <Outlet />
       </main>
       <Footer />
